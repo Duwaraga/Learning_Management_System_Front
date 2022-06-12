@@ -2,10 +2,9 @@ import Student from './Student';
 
 function App() {
   return (
-
-     <Student/>
-
+        <Student/>
   );
 }
 
 export default App;
+
