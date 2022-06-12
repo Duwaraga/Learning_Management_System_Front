@@ -1,13 +1,28 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import axios from "axios";
 
 function Student(props) {
   const [name, setName] = useState("");
   const [registrationNumber, setRegistrationNumber] = useState("");
   var [student, setStudent] = useState([]);
 
+  const handleDelete = (id) => {
+    axios
+    .delete(`https://localhost:5001/api/student/${id}`)
+    .then((response) => {
+      console.log(response.data);
+    });
+  };
 
   useEffect(() => {
     axios.get("https://localhost:5001/api/student").then((response) => {
