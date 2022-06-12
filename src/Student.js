@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import {Divider} from "@material-ui/core"
+import { AppBar, Divider, IconButton, Toolbar, Typography } from "@material-ui/core";
 
 function Student(props) {
   const [name, setName] = useState("");
@@ -19,20 +19,19 @@ function Student(props) {
 
   const handleDelete = (id) => {
     axios
-    .delete(`https://localhost:5001/api/student/${id}`)
-    .then((response) => {
-      console.log(response.data);
-    });
+      .delete(`https://localhost:44345/api/student/${id}`)
+      .then((response) => {
+        console.log(response.data);
+      });
   };
 
   useEffect(() => {
-    axios.get("https://localhost:5001/api/student").then((response) => {
+    axios.get("https://localhost:44345/api/student").then((response) => {
       console.log(response);
       setStudent(response.data);
       console.log(response.data);
     });
   }, [student]);
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,11 +42,11 @@ function Student(props) {
     };
     console.log(data);
 
-    axios.post("https://localhost:5001/api/student", data).then((res) => {
+    axios.post("https://localhost:44345/api/student", data).then((res) => {
       console.log(res);
       console.log(res.data);
     });
-  };  
+  };
 
   return (
     <>
@@ -59,9 +58,25 @@ function Student(props) {
             justifyContent: "center",
           }}
         >
-          <h3>
-            Learning Management System
-          </h3>
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                
+              </IconButton>
+              <Typography variant="h6" color="inherit" component="div">
+              Learning Management System
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <br/>
+          {/* <div style={{ textAlign: "center" }}>
+            <h3>Learning Management System</h3>
+          </div> */}
 
           <TextField
             style={{ flex: 0.5 }}
@@ -73,6 +88,7 @@ function Student(props) {
             onChange={(e) => setName(e.target.value)}
           />
 
+          <br />
           <TextField
             style={{ flex: 0.5 }}
             label="Registration Number"
@@ -83,10 +99,8 @@ function Student(props) {
             variant="outlined"
           />
 
-          <Divider/>
-          <Divider/>
-          <br/>
-
+          <br />
+          <br />
 
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Button type="submit" variant="contained" color="primary">
@@ -96,9 +110,9 @@ function Student(props) {
         </div>
       </form>
 
-      <Divider/>
-      <Divider/>
-      <br/>
+      <br />
+      <Divider />
+      <br />
 
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
@@ -138,18 +152,20 @@ function Student(props) {
                 <TableCell align="center">{row.regNo}</TableCell>
                 <TableCell align="center">{row.name}</TableCell>
                 <TableCell align="center">
-                
-                <Button onClick={() => handleDelete(row.regNo)} type="submit" variant="contained" color="secondary">
-                  Delete
-                </Button>
-                
+                  <Button
+                    onClick={() => handleDelete(row.regNo)}
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Delete
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-
     </>
   );
 }
