@@ -62,6 +62,57 @@ function Student(props) {
         </div>
       </form>
 
+
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell
+                style={{ fontWeight: "bold", fontSize: "18px" }}
+                align="center"
+              >
+                No
+              </TableCell>
+              <TableCell
+                style={{ fontWeight: "bold", fontSize: "18px" }}
+                align="center"
+              >
+                Registration Number
+              </TableCell>
+              <TableCell
+                style={{ fontWeight: "bold", fontSize: "18px" }}
+                align="center"
+              >
+                Name
+              </TableCell>
+
+              <TableCell
+                style={{ fontWeight: "bold", fontSize: "18px" }}
+                align="center"
+              >
+                Delete
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {student.map((row, index) => (
+              <TableRow key={row.id}>
+                <TableCell align="center">{index + 1}</TableCell>
+                <TableCell align="center">{row.regNo}</TableCell>
+                <TableCell align="center">{row.name}</TableCell>
+                <TableCell align="center">
+                
+                <Button onClick={() => handleDelete(row.regNo)} type="submit" variant="contained" color="secondary">
+                  Delete
+                </Button>
+                
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
     </>
   );
 }
