@@ -8,6 +8,22 @@ function Student(props) {
   const [registrationNumber, setRegistrationNumber] = useState("");
   var [student, setStudent] = useState([]);
 
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const data = {
+      name: name,
+      regNo: registrationNumber,
+    };
+    console.log(data);
+
+    axios.post("https://localhost:5001/api/student", data).then((res) => {
+      console.log(res);
+      console.log(res.data);
+    });
+  };  
+
   return (
     <>
       <form onSubmit={handleSubmit}>
