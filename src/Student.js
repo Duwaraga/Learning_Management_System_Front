@@ -9,6 +9,15 @@ function Student(props) {
   var [student, setStudent] = useState([]);
 
 
+  useEffect(() => {
+    axios.get("https://localhost:5001/api/student").then((response) => {
+      console.log(response);
+      setStudent(response.data);
+      console.log(response.data);
+    });
+  }, [student]);
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
