@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import {Divider} from "@material-ui/core"
 
 function Student(props) {
   const [name, setName] = useState("");
@@ -58,6 +59,10 @@ function Student(props) {
             justifyContent: "center",
           }}
         >
+          <h3>
+            Learning Management System
+          </h3>
+
           <TextField
             style={{ flex: 0.5 }}
             label="Name"
@@ -78,6 +83,11 @@ function Student(props) {
             variant="outlined"
           />
 
+          <Divider/>
+          <Divider/>
+          <br/>
+
+
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Button type="submit" variant="contained" color="primary">
               Submit
@@ -86,6 +96,9 @@ function Student(props) {
         </div>
       </form>
 
+      <Divider/>
+      <Divider/>
+      <br/>
 
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
